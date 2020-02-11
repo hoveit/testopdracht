@@ -13,7 +13,7 @@ class FormController extends Controller
         $formData->aanhef = $request->aanhef;
         $formData->voornaam = $request->voornaam;
         $formData->tussenvoegsel = $request->tussenvoegsel;
-        $formData->achternaam = $request->tussenvoegsel;
+        $formData->achternaam = $request->achternaam;
         $formData->email = $request->email;
         $formData->land = $request->land;
 

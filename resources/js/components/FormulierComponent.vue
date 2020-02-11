@@ -118,6 +118,7 @@
                                         :country="country"
                                         topCountry="NL"
                                         :state="stateLand"
+                                        placeholder="Selecteer land"
                                     />
 
                                     <b-form-invalid-feedback :state="stateLand">
@@ -153,6 +154,9 @@
                             <b-card class="mt-3" header="Form Data Result">
                                 <pre class="m-0">{{ form }}</pre>
                             </b-card>
+                            <div class="mt-2">
+                                <b-link href="/formulier">GET form data</b-link>
+                            </div>
                         </div>
                     </div>
                 </div>

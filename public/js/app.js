@@ -2071,6 +2071,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -71723,7 +71727,8 @@ var render = function() {
                                 id: "input-6",
                                 country: _vm.country,
                                 topCountry: "NL",
-                                state: _vm.stateLand
+                                state: _vm.stateLand,
+                                placeholder: "Selecteer land"
                               },
                               model: {
                                 value: _vm.form.land,
@@ -71813,6 +71818,17 @@ var render = function() {
                       _vm._v(_vm._s(_vm.form))
                     ])
                   ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "mt-2" },
+                  [
+                    _c("b-link", { attrs: { href: "/formulier" } }, [
+                      _vm._v("GET form data")
+                    ])
+                  ],
+                  1
                 )
               ],
               1
