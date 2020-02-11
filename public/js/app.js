@@ -1924,9 +1924,308 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log("Component mounted.");
+  data: function data() {
+    return {
+      dismissSecs: 5,
+      dismissCountDown: 0,
+      form: {
+        aanhef: null,
+        voornaam: "",
+        tussenvoegsel: "",
+        achternaam: "",
+        email: "",
+        land: null
+      },
+      aanhefKeuzes: [{
+        text: "Selecteer een aanhef",
+        value: null
+      }, "Heer", "Mevrouw"],
+      alertMessage: "",
+      variant: "",
+      errors: {},
+      show: true
+    };
+  },
+  methods: {
+    countDownChanged: function countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown;
+    },
+    showAlert: function showAlert() {
+      this.dismissCountDown = this.dismissSecs;
+    },
+    onSubmit: function onSubmit(evt) {
+      var _this = this;
+
+      evt.preventDefault();
+      var formData = new FormData();
+      formData.append("name", this.form.name);
+      formData.append("email", this.form.email);
+      formData.append("food", this.form.food);
+      this.form.checked.forEach(function (check) {
+        formData.append(check, "1");
+      }); // eslint-disable-next-line no-undef
+
+      axios.post("/formulier", formData).then(function (response) {
+        _this.errors = {};
+        _this.alertMessage = response.data.message;
+        _this.variant = "success";
+
+        _this.showAlert();
+      })["catch"](function (error) {
+        _this.errors = error.response.data.errors;
+        _this.alertMessage = error.response.data.message;
+        _this.variant = "danger";
+
+        _this.showAlert();
+      });
+    },
+    onReset: function onReset(evt) {
+      var _this2 = this;
+
+      evt.preventDefault();
+      this.form.aanhef = null;
+      this.form.voornaam = "";
+      this.form.tussenvoegsel = "";
+      this.form.achternaam = "";
+      this.form.email = "";
+      this.form.land = "";
+      this.$nextTick(function () {
+        _this2.show = true;
+      });
+    }
+  },
+  computed: {
+    invalidFeedbackAanhef: function invalidFeedbackAanhef() {
+      if (this.errors.aanhef) {
+        return this.errors.aanhef[0];
+      } else {
+        return null;
+      }
+    },
+    stateAanhef: function stateAanhef() {
+      if (this.errors.aanhef) {
+        return false;
+      } else {
+        return null;
+      }
+    },
+    invalidFeedbackVoornaam: function invalidFeedbackVoornaam() {
+      if (this.errors.voornaam) {
+        return this.errors.voornaam[0];
+      } else {
+        return null;
+      }
+    },
+    stateVoornaam: function stateVoornaam() {
+      if (this.errors.voornaam) {
+        return false;
+      } else {
+        return null;
+      }
+    },
+    invalidFeedbackTussenvoegsel: function invalidFeedbackTussenvoegsel() {
+      if (this.errors.tussenvoegsel) {
+        return this.errors.tussenvoegsel[0];
+      } else {
+        return null;
+      }
+    },
+    stateTussenvoegsel: function stateTussenvoegsel() {
+      if (this.errors.tussenvoegsel) {
+        return false;
+      } else {
+        return null;
+      }
+    },
+    invalidFeedbackAchternaam: function invalidFeedbackAchternaam() {
+      if (this.errors.achternaam) {
+        return this.errors.achternaam[0];
+      } else {
+        return null;
+      }
+    },
+    stateAchternaam: function stateAchternaam() {
+      if (this.errors.achternaam) {
+        return false;
+      } else {
+        return null;
+      }
+    },
+    invalidFeedbackEmail: function invalidFeedbackEmail() {
+      if (this.errors.email) {
+        return this.errors.email[0];
+      } else {
+        return null;
+      }
+    },
+    stateEmail: function stateEmail() {
+      if (this.errors.email) {
+        return false;
+      } else {
+        return null;
+      }
+    },
+    invalidFeedbackLand: function invalidFeedbackLand() {
+      if (this.errors.land) {
+        return this.errors.land[0];
+      } else {
+        return null;
+      }
+    },
+    stateLand: function stateLand() {
+      if (this.errors.land) {
+        return false;
+      } else {
+        return null;
+      }
+    }
   }
 });
 
@@ -71174,32 +71473,302 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center mt-5" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center mt-5" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("Formulier")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "div",
+              [
+                _vm.show
+                  ? _c(
+                      "b-form",
+                      { on: { submit: _vm.onSubmit, reset: _vm.onReset } },
+                      [
+                        _c(
+                          "b-form-group",
+                          {
+                            attrs: {
+                              id: "input-group-1",
+                              label: "Aanhef:",
+                              "label-for": "input-1"
+                            }
+                          },
+                          [
+                            _c("b-form-select", {
+                              attrs: {
+                                id: "input-1",
+                                options: _vm.aanhefKeuzes,
+                                required: "",
+                                state: _vm.stateAanhef
+                              },
+                              model: {
+                                value: _vm.form.aanhef,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.form, "aanhef", $$v)
+                                },
+                                expression: "form.aanhef"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-invalid-feedback",
+                              { attrs: { state: _vm.stateAanhef } },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(_vm.invalidFeedbackAanhef) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-form-group",
+                          {
+                            attrs: {
+                              id: "input-group-2",
+                              label: "Voornaam:",
+                              "label-for": "input-2"
+                            }
+                          },
+                          [
+                            _c("b-form-input", {
+                              attrs: {
+                                id: "input-2",
+                                required: "",
+                                placeholder: "voornaam",
+                                state: _vm.stateVoornaam
+                              },
+                              model: {
+                                value: _vm.form.voornaam,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.form, "voornaam", $$v)
+                                },
+                                expression: "form.voornaam"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-invalid-feedback",
+                              { attrs: { state: _vm.stateVoornaam } },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(_vm.invalidFeedbackVoornaam) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-form-group",
+                          {
+                            attrs: {
+                              id: "input-group-3",
+                              label: "Tussenvoegsel:",
+                              "label-for": "input-3"
+                            }
+                          },
+                          [
+                            _c("b-form-input", {
+                              attrs: {
+                                id: "input-3",
+                                required: "",
+                                placeholder: "tussenvoegsel",
+                                state: _vm.stateTussenvoegsel
+                              },
+                              model: {
+                                value: _vm.form.tussenvoegsel,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.form, "tussenvoegsel", $$v)
+                                },
+                                expression: "form.tussenvoegsel"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-invalid-feedback",
+                              { attrs: { state: _vm.stateTussenvoegsel } },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(_vm.invalidFeedbackTussenvoegsel) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-form-group",
+                          {
+                            attrs: {
+                              id: "input-group-4",
+                              label: "Achternaam:",
+                              "label-for": "input-4"
+                            }
+                          },
+                          [
+                            _c("b-form-input", {
+                              attrs: {
+                                id: "input-4",
+                                required: "",
+                                placeholder: "achternaam",
+                                state: _vm.stateAchternaam
+                              },
+                              model: {
+                                value: _vm.form.achternaam,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.form, "achternaam", $$v)
+                                },
+                                expression: "form.achternaam"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-invalid-feedback",
+                              { attrs: { state: _vm.stateAchternaam } },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(_vm.invalidFeedbackAchternaam) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-form-group",
+                          {
+                            attrs: {
+                              id: "input-group-5",
+                              label: "E-mailadres:",
+                              "label-for": "input-5"
+                            }
+                          },
+                          [
+                            _c("b-form-input", {
+                              attrs: {
+                                id: "input-5",
+                                type: "email",
+                                required: "",
+                                placeholder: "e-mailadres",
+                                state: _vm.stateEmail
+                              },
+                              model: {
+                                value: _vm.form.email,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.form, "email", $$v)
+                                },
+                                expression: "form.email"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-invalid-feedback",
+                              { attrs: { state: _vm.stateEmail } },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(_vm.invalidFeedbackEmail) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-button",
+                          { attrs: { type: "submit", variant: "primary" } },
+                          [_vm._v("Submit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-button",
+                          { attrs: { type: "reset", variant: "danger" } },
+                          [_vm._v("Reset")]
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "b-alert",
+                  {
+                    staticClass: "mt-3",
+                    attrs: {
+                      show: _vm.dismissCountDown,
+                      dismissible: "",
+                      variant: _vm.variant
+                    },
+                    on: {
+                      dismissed: function($event) {
+                        _vm.dismissCountDown = 0
+                      },
+                      "dismiss-count-down": _vm.countDownChanged
+                    }
+                  },
+                  [
+                    _c("p", [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(_vm.alertMessage) +
+                          "\n                            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("b-progress", {
+                      attrs: {
+                        variant: _vm.variant,
+                        max: _vm.dismissSecs,
+                        value: _vm.dismissCountDown,
+                        height: "4px"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-card",
+                  {
+                    staticClass: "mt-3",
+                    attrs: { header: "Form Data Result" }
+                  },
+                  [
+                    _c("pre", { staticClass: "m-0" }, [
+                      _vm._v(_vm._s(_vm.form))
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
           ])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
