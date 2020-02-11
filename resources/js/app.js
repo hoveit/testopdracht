@@ -6,12 +6,14 @@
 
 require("./bootstrap");
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import vueCountryRegionSelect from "vue-country-region-select";
 
 window.Vue = require("vue");
 
 // Install BootstrapVue
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
+Vue.use(vueCountryRegionSelect);
 
 /**
  * The following block of code may be used to automatically register your

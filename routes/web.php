@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('formulier');
 });
+
+Route::get('formulier', 'FormController@index');
+Route::post('formulier', 'FormController@store');

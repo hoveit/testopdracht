@@ -107,22 +107,23 @@
                                     </b-form-invalid-feedback>
                                 </b-form-group>
 
-                                <!-- <b-form-group
+                                <b-form-group
                                     id="input-group-6"
-                                    label="Your Name:"
+                                    label="Land:"
                                     label-for="input-6"
                                 >
-                                    <b-form-input
+                                    <country-select
                                         id="input-6"
-                                        v-model="form.name"
-                                        required
-                                        placeholder="Enter name"
-                                        :state="stateName"
+                                        v-model="form.land"
+                                        :country="country"
+                                        topCountry="NL"
+                                        :state="stateLand"
                                     />
-                                    <b-form-invalid-feedback :state="stateName">
-                                        {{ invalidFeedbackName }}
+
+                                    <b-form-invalid-feedback :state="stateLand">
+                                        {{ invalidFeedbackLand }}
                                     </b-form-invalid-feedback>
-                                </b-form-group> -->
+                                </b-form-group>
 
                                 <b-button type="submit" variant="primary"
                                     >Submit</b-button
@@ -182,7 +183,8 @@ export default {
             alertMessage: "",
             variant: "",
             errors: {},
-            show: true
+            show: true,
+            country: ""
         };
     },
     methods: {
